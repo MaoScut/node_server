@@ -2,8 +2,16 @@
 create a customization node server
 
 希望能够用下面的方式调用
-let server = require('./server');
-server.get('/index', indexHandle);
-server.post('/update',updateHandle);
-server.use((req, res)=>console.log());//每次收到请求，输出请求的信息
-server.listen(8080, ()=>console.log('listening on port 8080'));
+let server = require('./node_server');
+server.get('/index', indexHandle);//待定
+server.post('/update',updateHandle);//待定
+
+server.use(middleware1, middleware2, ...)
+server.start(handle); //handle是url和处理程序的对应关系
+
+是不是下面这样子更合理呢？
+let server = require('./node_server');
+server.use();
+server.setHandleMap();
+server.listen();
+暂时还不引用到其他项目中
