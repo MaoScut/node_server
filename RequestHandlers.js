@@ -1,4 +1,5 @@
 let fs = require('fs');
-function Index(res, req, para) {
-    fs.createReadStream(__dirname + pathname).pipe(res);
+function Index(req, res, para) {
+    fs.createReadStream(__dirname + '/index.html').pipe(res);
 }
+exports.Index = Index;

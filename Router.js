@@ -1,6 +1,6 @@
 let fs = require('fs');
 let url = require('url');
-function route(res, req, handle) {
+function route(req, res, handle) {
     let pathname = url.parse(req.url).pathname;
     let para;
     if(typeof handle[pathname] == 'function')
@@ -8,6 +8,7 @@ function route(res, req, handle) {
     else {
         fs.stat(__dirname + pathname, (err, stat) => {
             if(err || !stat.isFile()) {
+                res.writeHead(404);
                 res.end('not found for' + pathname);
                 return;
             } else {
